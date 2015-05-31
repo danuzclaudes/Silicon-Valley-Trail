@@ -5,30 +5,25 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		
 		// 1. select difficulty
 		Scanner s = new Scanner(System.in);
+		// 1.1 prompt for selecting difficulty
 		System.out.println("Select a hardness by entering an integer "
 						 + "(1 = easy, 2 = medium, 3 = difficult)");
 		int hardness = s.nextInt();
 		
-		// initialize mode according to user input
+		// 1.2 initialize mode according to user input
 		Adventure.Difficulty mode;
 		switch(hardness){
 		case 1:
 			mode = Adventure.Difficulty.EASY;
-			 
 			break;
 		case 2:
 			mode = Adventure.Difficulty.MEDIUM;
-			
 			break;
-			
 		case 3:
 			mode = Adventure.Difficulty.HARD;
-			
 			break;
-			
 		default:
 			throw new RuntimeException("Invalid choice of hardness");
 		}
@@ -46,7 +41,7 @@ public class Main {
 		do{
 			City current_city = adventure.getCurrentCity();
 			
-			// prompt for selecting a city
+			// 4.1 prompt for selecting a city
 			int index = 1;
 			System.out.println("You are in "+current_city.getName()
 							  +". Which city would you like to travel to? ");
@@ -56,10 +51,10 @@ public class Main {
 			}
 			System.out.println("0. Exit");
 			
-			// user select from 1 to length [1..length] or 0
+			// 4.2 user selects from 1 to length [1..length] or 0
 			selection = s.nextInt();
 			
-			// invalid input processing
+			// 4.3 invalid input processing
 			if(selection > cities.length || selection < 0) continue;
 			
 			if(selection <= cities.length && selection > 0){
@@ -69,10 +64,6 @@ public class Main {
 			// else [if(selection == 0)] break; 
 			// note: if user selects 0, should exit immediately
 			
-		}while(selection != 0);
-		
-		
-		
+		}while(selection != 0);		
 	}
-
 }

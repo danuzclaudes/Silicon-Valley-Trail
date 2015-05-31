@@ -31,15 +31,23 @@ public class KnapsackImpl implements Knapsack {
 	}
 	
 	
-	// good example of Generic parameter+Parent parameter
+	/**
+	 * good example of Generic parameter+Parent parameter:
+	 * 
+	 * ---> Parent type parameters accept either Parent or Children parameter
+	 * ---> Child type parameters won't accept parent or other child type para
+	 * 
+	 * since it's now PouchImpl<S>.add(S item)
+	 * when S is PowerUp type,
+	 * => PouchImpl<PowerUp>.add(PowerUp item)
+	 * => Children type won't accept Parent [Supplies] Type
+	 * => b/c Supplies may not be the specific Children
+	 * => i.e. Contravariant cast
+	 */
 	public void add(Supplies item) { 
-					// ---> Parent type parameters accept either Parent or Children parameter
+					
 		if(item instanceof Clothing) clothing_pouch.add((Clothing) item);
 		else if(item instanceof PowerUp) powerup_pouch.add((PowerUp) item);
-										// ---> PouchImpl<S>.add(S item)
-										// => PouchImpl<PowerUp>.add(PowerUp item)
-										// => Children type won't accept Parent [Supplies] Type
-										// => b/c Supplies may not be the specific Children
 		else food_pouch.add((Food) item);
 	}
 

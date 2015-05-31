@@ -36,7 +36,7 @@ abstract public class PersonImpl implements Person {
 	public void eat(Food food) throws NoFoodException {
 		if(food == null) throw new IllegalArgumentException("Illegal argument");
 		food.consume();
-//		try{food.consume();} catch(NoFoodException e){}
+		// try{food.consume();} catch(NoFoodException e){}
 		
 		current_hp = this.getCurrentHP() + food.getFill(); // current > max hp???
 		if(this.getCurrentHP()>max_hp) current_hp = max_hp;

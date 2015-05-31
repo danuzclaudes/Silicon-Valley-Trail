@@ -5,6 +5,15 @@ import supplies.Food;
 import supplies.PowerUp;
 import supplies.Supplies;
 
+/**
+ * Supplies will be stored and organized in a 
+ * container called Knapsack. Our Knapsack 
+ * will be organized into Pouches: one for 
+ * Food, one for Clothing, and one for PowerUps
+ * 
+ * @author danuzclaudes
+ *
+ */
 public class KnapsackImpl implements Knapsack {
 	
 	private FoodPouch food_pouch;
@@ -42,7 +51,9 @@ public class KnapsackImpl implements Knapsack {
 			   powerup_pouch.getTotalWeight();
 	}
 	
-	// returns an array of all of the supplies in the knapsack.
+	/**
+	 * returns an array of all of the supplies in the knapsack. 
+	 */
 	public Supplies[] getSupplies() {
 		Supplies[] food_supplies = food_pouch.getItems();
 		Supplies[] powerup_supplies = powerup_pouch.getItems();

@@ -8,7 +8,7 @@ public class ClothingImpl extends SuppliesImpl implements Clothing {
 						   int price, Clothing.Warmth warmth, 
 						   String name){
 		super(amount,weight,price,name);
-
+		/* check inputs validity*/ 
 		if(!isWarmth(warmth)) throw new IllegalArgumentException(
 				"Warmth should be in the range of LIGHT, MEDIUM, WARM!");
 		this.warmth = warmth;

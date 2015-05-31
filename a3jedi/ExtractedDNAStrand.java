@@ -1,5 +1,14 @@
 package a3jedi;
 
+/**
+ * ExtractedDNAStrand is constructed as a substrand 
+ * from an existing DNAStrand and encapsulates a 
+ * reference to a "source" strand and the start 
+ * and end positions within that strand.
+ * 
+ * @author danuzclaudes
+ *
+ */
 public class ExtractedDNAStrand implements DNAStrand {
 
 	private DNAStrand source_strand;
@@ -7,9 +16,14 @@ public class ExtractedDNAStrand implements DNAStrand {
 	private int start;
 	private int end;
 	
-	public ExtractedDNAStrand(DNAStrand source_strand, int start, int end, String name) {
+	public ExtractedDNAStrand(DNAStrand source_strand, 
+							  int start, int end, 
+							  String name) {
 		/* Your code here. */
-		if(source_strand == null || start<0 || end>=source_strand.getLength() || start > end) 
+		/* check inputs validity*/ 
+		if(source_strand == null 
+				|| start<0 || end>=source_strand.getLength() 
+				|| start > end) 
 			throw new RuntimeException("Illegal");
 		this.source_strand = source_strand;
 		this.start = start;
@@ -17,7 +31,8 @@ public class ExtractedDNAStrand implements DNAStrand {
 		this.name = name;
 	}
 
-	public ExtractedDNAStrand(DNAStrand source_strand, int start, int end) {
+	public ExtractedDNAStrand(DNAStrand source_strand, 
+							  int start, int end) {
 		/* Your code here. */
 		this(source_strand, start, end, "Unnamed");
 	}
@@ -34,7 +49,8 @@ public class ExtractedDNAStrand implements DNAStrand {
 
 	public char getBaseAt(int idx) {
 		/* Your code here. */
-		if(idx < 0|| idx > end-start) throw new RuntimeException("Illegal");
+		if(idx < 0|| idx > end-start) 
+			throw new RuntimeException("Illegal");
 		return this.source_strand.getBaseAt(idx+start);
 	}
 
@@ -45,17 +61,27 @@ public class ExtractedDNAStrand implements DNAStrand {
 
 	public DNAStrand extract(int start, int end) {
 		/* Your code here. */
-		if( start<0 || start>end || end>this.end-this.start ) 
+		/* check inputs validity*/ 
+		if( start<0 || start>end 
+		 || end>this.end-this.start ) 
 			throw new RuntimeException("Illegal");
-		return new ExtractedDNAStrand(source_strand, start+this.start, end+this.start);
+		return new ExtractedDNAStrand(source_strand, 
+									  start+this.start, end+this.start);
 	}
 
 	public DNAStrand join(DNAStrand tail) {
 		/* Your code here. */
-		if(tail == null) throw new RuntimeException("Illegal");
+		if(tail == null) 
+			throw new RuntimeException("Illegal");
 		return new JoinedDNAStrand(this, tail);
 	}
 
+	/**
+	 * find substrand using linear search structure
+	 * start at first base 
+	 * @param substrand
+	 * @return
+	 */
 	public int findSubstrand(DNAStrand substrand) {
 		int len = substrand.getLength();
 		for(int i=0; i<=this.getLength()-len; i++){
@@ -71,7 +97,13 @@ public class ExtractedDNAStrand implements DNAStrand {
 		return -1;
 	}
 
-	public int findSubstrand(DNAStrand substrand, int search_start_position) {
+	/**
+	 * find substrand given start position
+	 * @param substrand
+	 * @return
+	 */
+	public int findSubstrand(DNAStrand substrand, 
+							 int search_start_position) {
 		int len = substrand.getLength();
 		for(int i=search_start_position; i<=this.getLength()-len; i++){
 			boolean matched = true;

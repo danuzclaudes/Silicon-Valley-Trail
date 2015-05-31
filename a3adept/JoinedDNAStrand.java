@@ -1,14 +1,24 @@
 package a3adept;
 
+/**
+ * JoinedDNAStrand is constructed from two existing DNAStrands 
+ * and encapsulates a reference to a "head" strand and a "tail" strand
+ * @author danuzclaudes
+ *
+ */
 public class JoinedDNAStrand implements DNAStrand {
 
 	private DNAStrand head;
 	private DNAStrand tail;
 	private String name;
 	
-	public JoinedDNAStrand(DNAStrand head, DNAStrand tail, String name) {
+	public JoinedDNAStrand(
+			DNAStrand head, 
+			DNAStrand tail, 
+			String name) {
 		/* Your code here. */
-		if(head == null || tail == null) throw new RuntimeException("Illegal");
+		if(head == null || tail == null) 
+			throw new RuntimeException("Illegal");
 		this.head = head;
 		this.tail = tail;
 		this.name = name;
@@ -30,9 +40,12 @@ public class JoinedDNAStrand implements DNAStrand {
 
 	public char getBaseAt(int idx) {
 		/* Your code here. */
-		if(idx<0 || idx>=this.getLength()) throw new RuntimeException("Illegal");
-		else if(idx<head.getLength()) return head.getBaseAt(idx);
-		else return tail.getBaseAt(idx-head.getLength());
+		if(idx<0 || idx>=this.getLength()) 
+			throw new RuntimeException("Illegal");
+		else if(idx<head.getLength()) 
+			return head.getBaseAt(idx);
+		else 
+			return tail.getBaseAt(idx-head.getLength());
 	}
 
 	public int getLength() {
@@ -53,7 +66,8 @@ public class JoinedDNAStrand implements DNAStrand {
 
 	public DNAStrand join(DNAStrand tail) {
 		/* Your code here. */
-		if(tail == null) throw new RuntimeException("Illegal");
+		if(tail == null) 
+			throw new RuntimeException("Illegal");
 		return new JoinedDNAStrand(this, tail);
 	}
 }

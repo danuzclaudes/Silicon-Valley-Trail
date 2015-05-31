@@ -2,7 +2,7 @@ package a6;
 
 import supplies.*;
 
-public interface Knapsack {
+public interface Knapsack extends IterableSupplies{
 	void add(Food item);
 	void add(PowerUp item);
 	void add(Clothing item);

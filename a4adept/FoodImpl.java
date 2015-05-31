@@ -2,8 +2,10 @@ package a4adept;
 
 public class FoodImpl extends SuppliesImpl implements Food {
 	
-	private int fill; // nutritional value of the food item
-	private int expiration; // number of days until the food expires
+	// nutritional value of the food item
+	private int fill;        
+	// number of days until the food expires
+	private int expiration; 
 
 	protected FoodImpl(int amount, int weight, 
 	   		   		   int price, int fill, 

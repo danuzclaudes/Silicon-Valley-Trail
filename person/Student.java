@@ -2,7 +2,7 @@ package person;
 
 import java.util.Random;
 
-public class Student extends PersonImpl implements Person{
+public class Student extends PersonImpl{
 	
 	public Student(String name){
 		super(name);

@@ -28,7 +28,9 @@ public class CharArrayDNAStrand implements DNAStrand {
 	}
 
 	public char getBaseAt(int idx) {
-		if( idx<0 || idx>=this.getLength() ) throw new RuntimeException("Illegal");
+		/* check inputs validity*/ 
+		if( idx<0 || idx>=this.getLength() ) 
+			throw new RuntimeException("Illegal");
 		return bases[idx];
 	}
 

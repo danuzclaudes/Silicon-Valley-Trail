@@ -1,5 +1,7 @@
 package a6;
 
+import java.util.Iterator;
+
 import supplies.Clothing;
 import supplies.Food;
 import supplies.PowerUp;
@@ -86,6 +88,37 @@ public class KnapsackImpl implements Knapsack {
 			edibles[j++] = (Food) item;
 		}
 		return edibles;
+	}
+
+	/**
+	 * keeping track of the next item provided by 
+	 * each of the pouch iterators and 
+	 * returning the appropriate one when asked for the next item overall. 
+	 * 
+	 * Then, depending on which pouch it came from, 
+	 * replace that item with the next item from the corresponding pouch. 
+	 * 
+	 * Eventually all of the pouch iterators will run out of items.
+	 */
+	public Iterator<Supplies> nameIterator() {
+		return new KnapsackNameIterator(
+				food_pouch.nameIterator(), 
+				powerup_pouch.nameIterator(), 
+				clothing_pouch.nameIterator());
+	}
+
+	public Iterator<Supplies> amountIterator() {
+		return new KnapsackAmountIterator(
+				food_pouch.amountIterator(), 
+				powerup_pouch.amountIterator(), 
+				clothing_pouch.amountIterator());
+	}
+
+	public Iterator<Supplies> weightIterator() {
+		return new KnapsackWeightIterator(
+				food_pouch.weightIterator(), 
+				powerup_pouch.weightIterator(), 
+				clothing_pouch.weightIterator());
 	}
 
 }

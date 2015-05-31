@@ -1,5 +1,10 @@
 package a3adept;
 
+/**
+ * StringDNAStrand encapsulates a String to represent the strand bases
+ * @author danuzclaudes
+ *
+ */
 public class StringDNAStrand implements DNAStrand{
 	private String bases;
 	private String name;
@@ -31,7 +36,9 @@ public class StringDNAStrand implements DNAStrand{
 
 	public char getBaseAt(int idx) {
 		/* Your code here. */
-		if( idx<0 || idx>=this.getLength() ) throw new RuntimeException("Illegal");
+		/* check inputs validity*/ 
+		if( idx<0 || idx>=this.getLength() ) 
+			throw new RuntimeException("Illegal");
 		return this.bases.charAt(idx);
 	}
 
@@ -42,6 +49,7 @@ public class StringDNAStrand implements DNAStrand{
 
 	public DNAStrand extract(int start, int end) {
 		/* Your code here. */
+		/* check inputs validity*/ 
 		if( start<0 || start>end || end>=this.getLength() ) 
 			throw new RuntimeException("Illegal");
 		return new ExtractedDNAStrand(this, start, end, "Unnamed");
